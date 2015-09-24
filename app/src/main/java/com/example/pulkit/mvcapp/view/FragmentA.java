@@ -11,6 +11,9 @@ import com.shipdream.lib.android.mvc.view.MvcFragment;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by pulkit on 9/24/15.
  */
@@ -18,11 +21,17 @@ public class FragmentA extends MvcFragment {
 
     @Inject
     private CounterController counterController;
+    @Bind(R.id.fragment_a_counterDisplay)
+    TextView display;
 
-    private TextView display;
-    private Button increment;
-    private Button decrement;
-    private Button buttonShowAdvancedView;
+    @Bind(R.id.fragment_a_buttonIncrement)
+    Button increment;
+
+    @Bind(R.id.fragment_a_buttonDecrement)
+    Button decrement;
+
+    @Bind(R.id.fragment_a_buttonShowAdvancedView)
+    Button buttonShowAdvancedView;
 
     @Override
     protected int getLayoutResId() {
@@ -32,10 +41,7 @@ public class FragmentA extends MvcFragment {
     @Override
     public void onViewReady(View view, Bundle savedInstanceState, Reason reason) {
         super.onViewReady(view, savedInstanceState, reason);
-        display = (TextView) view.findViewById(R.id.fragment_a_counterDisplay);
-        increment = (Button) view.findViewById(R.id.fragment_a_buttonIncrement);
-        decrement = (Button) view.findViewById(R.id.fragment_a_buttonDecrement);
-        buttonShowAdvancedView = (Button) view.findViewById(R.id.fragment_a_buttonShowAdvancedView);
+        ButterKnife.bind(this,view);
         increment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
